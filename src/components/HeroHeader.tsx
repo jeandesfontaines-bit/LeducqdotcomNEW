@@ -246,12 +246,25 @@ export default function HeroHeader({
             }}
             className="absolute -inset-12 z-0 pointer-events-none overflow-hidden bg-[#030304]"
           >
+            {/* Background Room / Environment Image */}
+            {bgSrc && (
+              <img
+                alt="LEDUCQ Background"
+                src={bgSrc}
+                referrerPolicy="no-referrer"
+                fetchPriority="high"
+                decoding="async"
+                onError={handleBgError}
+                className="w-full h-full object-cover object-[64%_20%] sm:object-[62%_20%] md:object-[65%_22%] lg:object-[58%_22%] xl:object-[54%_22%] filter brightness-[0.62] contrast-[0.90] pointer-events-none"
+              />
+            )}
+
             {/* Deep subtle low-key ambient gradient for dimensionality without brightening the scene */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_46%_36%,_rgba(18,18,22,0.45)_0%,_rgba(6,6,8,0.85)_45%,_rgba(0,0,0,1)_85%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_46%_36%,_rgba(10,10,14,0.45)_0%,_rgba(4,4,6,0.85)_45%,_rgba(0,0,0,0.98)_85%)]" />
 
             {/* High-definition analog grain / noise texture */}
             <div
-              className="absolute inset-0 opacity-[0.16] mix-blend-screen pointer-events-none"
+              className="absolute inset-0 opacity-[0.14] mix-blend-screen pointer-events-none"
               style={{
                 backgroundImage: `url("${NOISE_GRAIN_URI}")`,
                 backgroundRepeat: "repeat",
@@ -261,7 +274,7 @@ export default function HeroHeader({
 
             {/* Secondary micro-noise layer for fine organic grain */}
             <div
-              className="absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none"
+              className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none"
               style={{
                 backgroundImage: `url("${NOISE_URI}")`,
                 backgroundRepeat: "repeat",
@@ -270,7 +283,7 @@ export default function HeroHeader({
             />
 
             {/* Deep vignette — seamless transition into deep black */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/75 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-20 md:w-36 bg-gradient-to-r from-transparent to-black pointer-events-none" />
             <div className="absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-l from-transparent to-black pointer-events-none" />
           </motion.div>
@@ -285,22 +298,27 @@ export default function HeroHeader({
             className="w-full h-full relative z-10 flex items-center justify-center overflow-hidden"
           >
             <motion.div
-              initial={{ opacity: 0, filter: "blur(10px)", scale: 1.04 }}
+              initial={{ opacity: 0, filter: "blur(8px)", scale: 1.02 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-              transition={{ duration: 1.3, delay: 0.15, ease: EASE }}
+              transition={{ duration: 1.1, delay: 0.1, ease: EASE }}
               className="w-full h-full flex items-center justify-center relative"
             >
-              {/* LEDUCQ Artist Portrait - object-position keeps face and companion in frame regardless of screen width */}
+              {/* LEDUCQ Artist Portrait with softened, comfortable illumination */}
               {portraitSrc && (
-                <img
-                  alt="LEDUCQ Portrait"
-                  src={portraitSrc}
-                  referrerPolicy="no-referrer"
-                  fetchPriority="high"
-                  decoding="async"
-                  onError={handlePortraitError}
-                  className="w-full h-full object-cover object-[64%_20%] sm:object-[62%_20%] md:object-[65%_22%] lg:object-[58%_22%] xl:object-[54%_22%] relative z-10 drop-shadow-2xl filter brightness-105 contrast-105 pointer-events-none"
-                />
+                <div className="relative w-full h-full">
+                  <img
+                    alt="LEDUCQ Portrait"
+                    src={portraitSrc}
+                    referrerPolicy="no-referrer"
+                    fetchPriority="high"
+                    decoding="async"
+                    onError={handlePortraitError}
+                    className="w-full h-full object-cover object-[64%_20%] sm:object-[62%_20%] md:object-[65%_22%] lg:object-[58%_22%] xl:object-[54%_22%] relative z-10 drop-shadow-2xl filter brightness-[0.70] contrast-[0.90] pointer-events-none"
+                  />
+                  {/* Subtle darkening veil specifically mitigating dog and bright highlights */}
+                  <div className="absolute inset-0 bg-black/25 mix-blend-multiply pointer-events-none z-15" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none z-15" />
+                </div>
               )}
             </motion.div>
           </motion.div>

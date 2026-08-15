@@ -60,12 +60,35 @@ export default function Footer({
   const sceneY = useTransform(scrollYProgress, [0, 1], ["20px", "-20px"]);
   const wordmarkY = useTransform(scrollYProgress, [0, 1], ["15px", "-10px"]);
 
+  // Dynamic frosted glass backdrop-filter blur responding to scroll
+  const frostedBlur = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.65],
+    ["blur(0px)", "blur(14px)", "blur(28px)"]
+  );
+  const frostedOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.5],
+    [0, 0.9, 1]
+  );
+
   return (
     <footer
       ref={footerRef}
       data-testid={LANDING.footer}
       className="relative min-h-[100vh] w-full overflow-hidden isolate bg-black text-[#F5F7FB] flex flex-col justify-between"
     >
+      {/* Dynamic Frosted Glass Backdrop-Filter Veil at Top Boundary */}
+      <motion.div
+        data-testid="footer-frosted-glass-veil"
+        style={{
+          backdropFilter: frostedBlur,
+          WebkitBackdropFilter: frostedBlur,
+          opacity: frostedOpacity,
+        }}
+        className="absolute top-0 left-0 right-0 h-40 sm:h-56 md:h-72 z-[15] pointer-events-none bg-gradient-to-b from-black/70 via-black/30 to-transparent border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
+      />
+
       {/* 1. Deep Starry Sky Background */}
       <img
         src={footerSky}
