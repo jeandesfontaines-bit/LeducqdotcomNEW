@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#000000" rx="12"/>
+  <!-- Sharp geometric 'L' and signature dot '.' -->
+  <path d="M 18 16 V 46 H 42 V 38 H 26 V 16 Z" fill="#FFFFFF"/>
+  <circle cx="48" cy="42" r="4" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="skyGlow" cx="50%" cy="30%" r="70%" fx="50%" fy="20%">
+      <stop offset="0%" stop-color="#111625" />
+      <stop offset="50%" stop-color="#07090e" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+    <filter id="blurFilter">
+      <feGaussianBlur stdDeviation="1.5" />
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#skyGlow)" />
+  <!-- Distant Nebular Glow -->
+  <circle cx="960" cy="280" r="500" fill="#1e293b" opacity="0.12" filter="url(#blurFilter)" />
+  <circle cx="500" cy="400" r="300" fill="#0f172a" opacity="0.2" filter="url(#blurFilter)" />
+  <!-- Stars -->
+  <g fill="#ffffff" opacity="0.65">
+    <circle cx="120" cy="80" r="1" />
+    <circle cx="280" cy="140" r="1.5" opacity="0.9" />
+    <circle cx="450" cy="60" r="0.8" />
+    <circle cx="620" cy="190" r="1.2" />
+    <circle cx="780" cy="90" r="1.8" opacity="0.95" />
+    <circle cx="910" cy="220" r="0.8" />
+    <circle cx="1040" cy="70" r="1.4" />
+    <circle cx="1180" cy="160" r="1" />
+    <circle cx="1340" cy="110" r="1.6" opacity="0.85" />
+    <circle cx="1520" cy="240" r="0.8" />
+    <circle cx="1680" cy="95" r="1.2" />
+    <circle cx="1810" cy="175" r="1.5" />
+    <circle cx="210" cy="310" r="1" />
+    <circle cx="390" cy="270" r="1.4" opacity="0.9" />
+    <circle cx="560" cy="380" r="0.8" />
+    <circle cx="720" cy="340" r="1.2" />
+    <circle cx="890" cy="420" r="1" />
+    <circle cx="1110" cy="310" r="1.6" opacity="0.95" />
+    <circle cx="1260" cy="390" r="0.8" />
+    <circle cx="1450" cy="330" r="1.3" />
+    <circle cx="1620" cy="440" r="1.1" />
+    <circle cx="1770" cy="360" r="1.5" />
+  </g>
+</svg>

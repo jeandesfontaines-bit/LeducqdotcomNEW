@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'RWE Sans Medium';
+  src: url('./assets/fonts/RWE Sans Web Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RWE Sans';
+  src: url('./assets/fonts/RWE Sans Web.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RWE Sans';
+  src: url('./assets/fonts/RWE Sans Web Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Smooth Scrolling & Lenis CSS */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Typography styles */
+.font-leducq {
+  font-family: 'RWE Sans Medium', 'RWE Sans', sans-serif;
+  letter-spacing: 0.12em;
+}
+
+.font-leducq-bold {
+  font-family: 'RWE Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.text-massive { font-size: 15vw; line-height: 0.8; letter-spacing: -0.05em; }
+
+@keyframes reveal-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.reveal-up { opacity: 0; animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes scale-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
+.scale-in { opacity: 0; animation: scale-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+.in-view-item {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.in-view-item.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Underline animé pour les liens texte */
+.link-under { position: relative; display: inline-block; }
+.link-under::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.15, 1);
+}
+.link-under:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Subtle cinematic chromatic aberration and brightness shift on hover */
+.chromatic-hover {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter, transform, text-shadow;
+}
+
+.chromatic-hover:hover {
+  filter: brightness(1.22) contrast(1.05);
+  text-shadow: 
+    -1.5px 0px 1px rgba(255, 65, 65, 0.45),
+    1.5px 0px 1px rgba(70, 190, 255, 0.45),
+    0px 0px 14px rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Controlled scroll snap helper */
+.snap-section {
+  scroll-snap-type: y proximity;
+}
+
+.snap-item {
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 22vh;
+}
+

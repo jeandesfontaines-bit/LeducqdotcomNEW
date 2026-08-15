@@ -1,0 +1,17 @@
+export const LANDING = {
+  header: 'landing-header',
+  logo: 'landing-logo',
+  langFr: 'landing-lang-fr',
+  langEn: 'landing-lang-en',
+  hero: 'landing-hero',
+  portrait: 'landing-portrait',
+  releaseInfo: 'landing-release-info',
+  albumArt: 'landing-album-art',
+  streamingNav: 'landing-streaming-nav',
+  about: 'landing-about',
+  footer: 'landing-footer',
+  newsletterForm: 'landing-newsletter-form',
+  newsletterInput: 'landing-newsletter-input',
+  newsletterSubmit: 'landing-newsletter-submit',
+  contactEmail: 'landing-contact-email',
+};

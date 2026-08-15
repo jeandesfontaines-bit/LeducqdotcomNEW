@@ -1,0 +1,6 @@
+{
+  "name": "LEDUCQ.",
+  "description": "Site officiel de LEDUCQ. - Artiste et producteur de musique électronique. Découvrez le nouveau morceau 'Tes lunettes'.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
