@@ -85,6 +85,8 @@ interface HeroHeaderProps {
   albumCoverUrl?: string;
   releaseTextFR?: string;
   releaseTextEN?: string;
+  trackTitleFR?: string;
+  trackTitleEN?: string;
   lang?: "FR" | "EN";
   onLangChange?: (lang: "FR" | "EN") => void;
 }
@@ -96,6 +98,8 @@ export default function HeroHeader({
   albumCoverUrl = "https://customer-assets-lxgj4vgw.emergentagent.net/job_electronic-artist/artifacts/3z4u8umr_Tes_lunettes.webp",
   releaseTextFR = "Nouvelle sortie · Juillet 2026",
   releaseTextEN = "New Release · July 2026",
+  trackTitleFR = "Tes lunettes",
+  trackTitleEN = "Tes lunettes",
   lang: propLang,
   onLangChange,
 }: HeroHeaderProps) {
@@ -156,7 +160,9 @@ export default function HeroHeader({
   const rightColOpacity = useTransform(smoothScroll, [0, 0.45, 0.85], [1, 0.85, 0]);
   const headerOpacity = useTransform(smoothScroll, [0, 0.35, 0.75], [1, 0.8, 0]);
   const vignette = useTransform(smoothScroll, [0, 1], [0, reduceMotion ? 0 : 0.65]);
+  const scrollCueOpacity = useTransform(smoothScroll, [0, 0.1], [1, 0]);
 
+  const trackTitle = lang === "FR" ? trackTitleFR : trackTitleEN;
   const releaseInfo = lang === "FR" ? releaseTextFR : releaseTextEN;
   const releaseParts = releaseInfo.split("·").map((s) => s.trim());
   const releaseTop = releaseParts[0] || (lang === "FR" ? "Nouvelle sortie" : "New Release");
@@ -252,7 +258,7 @@ export default function HeroHeader({
                 alt="LEDUCQ Background"
                 src={bgSrc}
                 referrerPolicy="no-referrer"
-                fetchPriority="high"
+                fetchPriority="auto"
                 decoding="async"
                 onError={handleBgError}
                 className="w-full h-full object-cover object-[64%_20%] sm:object-[62%_20%] md:object-[65%_22%] lg:object-[58%_22%] xl:object-[54%_22%] filter brightness-[0.62] contrast-[0.90] pointer-events-none"
@@ -262,23 +268,13 @@ export default function HeroHeader({
             {/* Deep subtle low-key ambient gradient for dimensionality without brightening the scene */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_46%_36%,_rgba(10,10,14,0.45)_0%,_rgba(4,4,6,0.85)_45%,_rgba(0,0,0,0.98)_85%)]" />
 
-            {/* High-definition analog grain / noise texture */}
+            {/* Analog grain / noise texture — single consolidated layer (was two stacked passes) */}
             <div
-              className="absolute inset-0 opacity-[0.14] mix-blend-screen pointer-events-none"
+              className="absolute inset-0 opacity-[0.09] mix-blend-screen pointer-events-none"
               style={{
                 backgroundImage: `url("${NOISE_GRAIN_URI}")`,
                 backgroundRepeat: "repeat",
                 backgroundSize: "220px 220px",
-              }}
-            />
-
-            {/* Secondary micro-noise layer for fine organic grain */}
-            <div
-              className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none"
-              style={{
-                backgroundImage: `url("${NOISE_URI}")`,
-                backgroundRepeat: "repeat",
-                backgroundSize: "120px 120px",
               }}
             />
 
@@ -321,6 +317,26 @@ export default function HeroHeader({
                 </div>
               )}
             </motion.div>
+          </motion.div>
+
+          {/* Editorial title — gives the hero typographic weight beyond the small release line */}
+          <motion.div
+            style={{ opacity: portraitOpacity }}
+            className="absolute bottom-8 sm:bottom-10 md:bottom-14 left-6 sm:left-8 md:left-16 z-20 pointer-events-none"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1.1, delay: 0.35, ease: EASE }}
+              className="font-leducq uppercase text-white leading-[0.92] text-[13vw] xs:text-[11vw] sm:text-[8vw] md:text-[4.4vw] lg:text-[3.8vw] font-medium drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]"
+            >
+              {trackTitle.split(" ").map((word, i) => (
+                <React.Fragment key={i}>
+                  {word}
+                  {i < trackTitle.split(" ").length - 1 && <br />}
+                </React.Fragment>
+              ))}
+            </motion.h1>
           </motion.div>
 
           {/* Scroll vignette for depth as the section scrolls away */}
@@ -396,6 +412,25 @@ export default function HeroHeader({
               ))}
             </nav>
           </motion.div>
+        </motion.div>
+
+        {/* Scroll cue — invites continuation into the installation, fades on first scroll */}
+        <motion.div
+          aria-hidden
+          style={{ opacity: reduceMotion ? 0 : scrollCueOpacity }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.6, ease: EASE }}
+          className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex-col items-center gap-3 pointer-events-none"
+        >
+          <span className="font-mono text-[10px] tracking-[0.3em] text-white/40 uppercase">
+            {lang === "FR" ? "Défiler" : "Scroll"}
+          </span>
+          <motion.span
+            animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.2, 0.6, 0.2] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent origin-top"
+          />
         </motion.div>
       </motion.section>
     </div>

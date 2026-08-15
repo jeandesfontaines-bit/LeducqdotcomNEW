@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Instagram } from "lucide-react";
 import { LANDING } from "@/constants/testIds";
-import footerSky from "@/assets/images/footer_sky_clean.jpg";
-import footerScene from "@/assets/images/footer_scene_clean.png";
+import footerSky from "@/assets/images/footer_sky_fixed.webp";
+import footerScene from "@/assets/images/footer_scene_fixed.webp";
 
 const SpotifyIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">

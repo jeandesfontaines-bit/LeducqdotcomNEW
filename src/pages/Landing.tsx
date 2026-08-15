@@ -150,13 +150,6 @@ export default function Landing() {
       climax: "Un moment à faire ressentir.",
       follow: "Suivre",
       socials: "Réseaux",
-      subscribe: "S'abonner",
-      subscribeTitle: "Gardons le contact.",
-      newsletter: "Infolettre",
-      newsletterDesc: "Recevez les nouvelles sorties et actualités de LEDUCQ.",
-      newsletterOk: "Valider",
-      subscribed: "Merci pour votre inscription !",
-      contact: "CONTACT@LEDUCQMUSIC.COM",
       tagline: "Le cinéma du réel mis en musique",
       copyright: "Tous droits réservés.",
       listenHeader: "ÉCOUTER",
@@ -181,13 +174,6 @@ export default function Landing() {
       climax: "A moment to be felt.",
       follow: "Follow",
       socials: "Socials",
-      subscribe: "Subscribe",
-      subscribeTitle: "Let's stay in touch.",
-      newsletter: "Newsletter",
-      newsletterDesc: "Receive new releases and news from LEDUCQ.",
-      newsletterOk: "Submit",
-      subscribed: "Thank you for subscribing!",
-      contact: "CONTACT@LEDUCQMUSIC.COM",
       tagline: "The cinema of reality set to music",
       copyright: "All rights reserved.",
       listenHeader: "LISTEN",
@@ -245,6 +231,10 @@ export default function Landing() {
         transparentPortraitUrl={PORTRAIT_TRANSPARENT}
         bgUrl={BG_TEXTURE}
         albumCoverUrl={ALBUM}
+        releaseTextFR={t.releaseInfo}
+        releaseTextEN={t.releaseInfo}
+        trackTitleFR={t.trackTitle}
+        trackTitleEN={t.trackTitle}
         lang={lang}
         onLangChange={setLang}
       />
